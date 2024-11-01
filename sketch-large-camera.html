@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlashForge 3D Printer Camera</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .live-background {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <img onerror="this.style.display='none'" class="live-background" 
+         id="cameraImage" 
+         src="https://s3.amazonaws.com/polar3d.com/files/printer/FF039498/r82TYRTQdC2dIk1urjF6yulR-current.jpg?9560608e-065d-b606-8d59-3bae5ad28a76" 
+         alt="3D Printer Camera Feed">
+
+    <script>
+        function refreshImage() {
+            const image = document.getElementById('cameraImage');
+            const currentTime = new Date().getTime();
+            // Append a timestamp to the image source to force refresh
+            image.src = `https://s3.amazonaws.com/polar3d.com/files/printer/FF039498/r82TYRTQdC2dIk1urjF6yulR-current.jpg?${currentTime}`;
+        }
+
+        // Refresh the image every 5 seconds (5000 milliseconds)
+        setInterval(refreshImage, 5000);
+    </script>
+</body>
+</html>
